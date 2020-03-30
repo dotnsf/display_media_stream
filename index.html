@@ -29,6 +29,15 @@ function handleLocalMediaStreamError( error ){
 
 
 $(function(){
+  //. 画面サイズ取得
+  var sw = window.parent.screen.width;
+  var sh = window.parent.screen.height;
+  //sw : sh = x : 480; => x = 480 * sw / sh;
+  var x = Math.floor( 480 * sw / sh );
+  $('#video').prop( 'width', x );
+  $('#canvas').prop( 'width', x );
+  $('#img').prop( 'width', x );
+
   var mediaStreamConstraints = { video: true };
   localVideo = document.querySelector( "video" );
   navigator.mediaDevices.getDisplayMedia( mediaStreamConstraints ).then( gotLocalMediaStream ).catch( handleLocalMediaStreamError );
