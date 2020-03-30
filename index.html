@@ -34,10 +34,15 @@ $(function(){
   var sh = window.parent.screen.height;
   //sw : sh = x : 480; => x = 480 * sw / sh;
   var x = Math.floor( 480 * sw / sh );
+  /*
   $('#video').prop( 'width', x );
   $('#canvas').prop( 'width', x );
   $('#img').prop( 'width', x );
   $('#img').prop( 'height', 480 );
+  */
+  $('#video').css( { width: x } );
+  $('#canvas').css( { width: x } );
+  $('#img').css( { width: x, height: 480 } );
 
   var mediaStreamConstraints = { video: true };
   localVideo = document.querySelector( "video" );
