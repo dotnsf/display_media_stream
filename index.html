@@ -15,11 +15,8 @@
 <title>Display Media Stream</title>
 <script>
 var localVideo = null;
-var localStream = null;
 
 function gotLocalMediaStream( mediaStream ){
-  //console.log( mediaStream );  //. { id: "id", active: true, }
-  localStream = mediaStream;
   localVideo.srcObject = mediaStream;
 }
 
