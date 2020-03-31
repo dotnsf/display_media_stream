@@ -34,42 +34,12 @@ $(function(){
   var sh = window.parent.screen.height;
   //sw : sh = x : 480; => x = 480 * sw / sh;
   var x = Math.floor( 480 * sw / sh );
-  /*
-  $('#video').prop( 'width', x );
-  $('#canvas').prop( 'width', x );
-  $('#img').prop( 'width', x );
-  $('#img').prop( 'height', 480 );
-  */
   $('#video').css( { width: x } );
-  $('#canvas').css( { width: x } );
-  $('#img').css( { width: x, height: 480 } );
 
   var mediaStreamConstraints = { video: true };
   localVideo = document.querySelector( "video" );
   navigator.mediaDevices.getDisplayMedia( mediaStreamConstraints ).then( gotLocalMediaStream ).catch( handleLocalMediaStreamError );
-
-  $('#capture-btn').click( function(){
-    video2image();
-  });
 });
-
-function video2image(){
-  if( localStream ){
-    var canvas = document.getElementById( 'canvas' );
-    var ctx = canvas.getContext( '2d' );
-    var img = document.getElementById( 'img' );
-
-    var video = document.getElementById( 'video' );
-    var w = video.offsetWidth;
-    var h = video.offsetHeight;
-
-    canvas.setAttribute( "width", w );
-    canvas.setAttribute( "height", h );
-
-    ctx.drawImage( video, 0, 0, w, h );
-    img.src = canvas.toDataURL( 'image/png' );
-  }
-}
 </script>
 <style>
 html, body {
@@ -78,45 +48,12 @@ html, body {
   padding: 0px;
   margin: 0px;
 }
-
-#img{
-  width: 640px;
-  height: 480px;
-}
-
-.hidetop{
-  position: absolute;
-  top: -500px;
-}
-
-.hide{
-  display: none;
-}
-
-.right{
-  text-align: right;
-}
 </style>
 </head>
 <body>
   <!-- Video element (live stream) -->
-  <div class="hidetop">
-    <video autoplay playsinline id="video" width="640" height="480"></video>
-  </div>
-
-  <!-- Canvas element (screenshot) -->
-  <div class="hide">
-    <canvas id="canvas" width="640" height="480"></canvas>
-  </div>
-
-  <!-- Capture button -->
-  <div class="right">
-    <button id="capture-btn" class="btn btn-primary">Capture!</button>
-  </div>
-
-  <!-- Image -->
   <div>
-    <img id="img"/>
+    <video autoplay playsinline id="video" width="640" height="480"></video>
   </div>
 </body>
 </html>
